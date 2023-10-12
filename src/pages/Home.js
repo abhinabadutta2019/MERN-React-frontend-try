@@ -18,7 +18,7 @@ const Home = () => {
         const json = await response.json();
 
         // console.log(response, "response");
-        console.log(json.tasks, "json");
+        // console.log(json.tasks, "json.tasks");
         //
         if (response.ok) {
           //updating state
