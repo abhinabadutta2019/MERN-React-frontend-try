@@ -11,6 +11,9 @@ const Onedata = ({ dataFields, statusHandler }) => {
         </p>
       }
       <button onClick={statusHandler}>Change status</button>
+      {/*  */}
+      <br />
+      <button>Delete button</button>
     </>
   );
 };

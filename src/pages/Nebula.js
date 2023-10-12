@@ -29,16 +29,26 @@ const Nebula = () => {
   // button handler
   const statusHandler = async (oneDataID) => {
     // console.log(e);
-    const response = await fetch(
-      `http://localhost:3006/tasks/updateTaskCompleted/${oneDataID}`,
-      {
-        method: "PUT", // Use PUT method
-      }
-    );
-    console.log(response, "response");
-    // const json = await response.json();
-    // try {
-    // } catch (err) {}
+
+    try {
+      const updateResonse = await fetch(
+        `http://localhost:3006/tasks/updateTaskCompleted/${oneDataID}`,
+        {
+          method: "PUT", // Use PUT method
+        }
+      );
+      console.log(updateResonse, "updateResonse");
+      ///////////////////////////////////////////////////////////
+      // now update the dataArray to show the updated data
+      const response = await fetch("http://localhost:3006/tasks");
+      const json = await response.json();
+      setDataArray(json.tasks);
+
+      //
+      // const json = await response.json();
+    } catch (err) {
+      console.log(err);
+    }
   };
   //
   return (
