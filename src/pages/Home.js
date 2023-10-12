@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const Home = () => {
-  const [dataArray, setDataArray] = useState(null);
+  const [dataArray, setDataArray] = useState([]);
   //
   //here useEffect fires a function when the component is renderd
   //[] empty array( called dependency array) argument makes sure, useEffect hook only fires - the inner function -onece  , only when the component is renderd
@@ -10,16 +10,22 @@ const Home = () => {
   useEffect(() => {
     // recommended not to use async function with useEffect- so, another inner async function used
     //
+
     const fetchMyData = async () => {
-      const response = await fetch("http://localhost:3006/tasks");
-      //??
-      const json = await response.json();
-      //
-      if (response.ok) {
-        //updating state
-        setDataArray(json);
+      try {
+        const response = await fetch("http://localhost:3006/tasks");
+        //??
+        const json = await response.json();
+        //
+        if (response.ok) {
+          //updating state
+          setDataArray(json);
+        }
+      } catch (err) {
+        console.error("Error fetching data:", err);
       }
     };
+
     // calling the function- fetchMyData-created inside useEffect
     fetchMyData();
   }, []);
