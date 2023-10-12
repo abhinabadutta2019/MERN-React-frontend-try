@@ -8,6 +8,7 @@ const Navbar = () => {
         <Link to="/">
           <h1>My App Title</h1>
         </Link>
+        <Link to="/nebula">Nebula</Link>
       </div>
     </header>
   );
