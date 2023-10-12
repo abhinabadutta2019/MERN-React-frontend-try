@@ -35,16 +35,7 @@ const Nebula = () => {
     <div>
       {dataArray.map((oneData) => (
         <li key={oneData._id}>
-          <h3>{oneData.name}</h3>
-          <p>Description : {oneData.description}</p>
-          <p>Slot : {oneData.slot}</p>
-          {
-            <p>
-              Work status :
-              {oneData.completed ? <> Completed</> : <> Not completed</>}
-            </p>
-          }
-          <button onClick={statusHandler}>Change status</button>
+          <Onedata dataFields={oneData} statusHandler={statusHandler} />
         </li>
       ))}
     </div>
