@@ -26,16 +26,31 @@ const Nebula = () => {
     //calling
     fetchMyData();
   }, []);
-  //
-  const statusHandler = (e) => {
-    console.log(e);
+  // button handler
+  const statusHandler = async (oneDataID) => {
+    // console.log(e);
+    const response = await fetch(
+      `http://localhost:3006/tasks/updateTaskCompleted/${oneDataID}`,
+      {
+        method: "PUT", // Use PUT method
+      }
+    );
+    console.log(response, "response");
+    // const json = await response.json();
+    // try {
+    // } catch (err) {}
   };
   //
   return (
     <div>
       {dataArray.map((oneData) => (
         <li key={oneData._id}>
-          <Onedata dataFields={oneData} statusHandler={statusHandler} />
+          <Onedata
+            dataFields={oneData}
+            statusHandler={() => {
+              statusHandler(oneData._id);
+            }}
+          />
         </li>
       ))}
     </div>
