@@ -24,8 +24,6 @@ const Home = () => {
           //updating state
           //   setDataArray(json);
           setDataArray(json.tasks);
-          //
-          //   console.log(dataArray, "dataArray");
         }
       } catch (err) {
         console.error("Error fetching data:", err);
