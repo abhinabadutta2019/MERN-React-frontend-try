@@ -16,10 +16,16 @@ const Home = () => {
         const response = await fetch("http://localhost:3006/tasks");
         //??
         const json = await response.json();
+
+        // console.log(response, "response");
+        console.log(json.tasks, "json");
         //
         if (response.ok) {
           //updating state
-          setDataArray(json);
+          //   setDataArray(json);
+          setDataArray(json.tasks);
+          //
+          //   console.log(dataArray, "dataArray");
         }
       } catch (err) {
         console.error("Error fetching data:", err);
