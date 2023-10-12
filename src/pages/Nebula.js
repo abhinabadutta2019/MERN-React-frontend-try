@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Onedata } from "../components/Onedata";
 
 const Nebula = () => {
   //
@@ -26,6 +27,10 @@ const Nebula = () => {
     fetchMyData();
   }, []);
   //
+  const statusHandler = (e) => {
+    console.log(e);
+  };
+  //
   return (
     <div>
       {dataArray.map((oneData) => (
@@ -39,6 +44,7 @@ const Nebula = () => {
               {oneData.completed ? <> Completed</> : <> Not completed</>}
             </p>
           }
+          <button onClick={statusHandler}>Change status</button>
         </li>
       ))}
     </div>
