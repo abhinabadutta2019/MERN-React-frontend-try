@@ -1,16 +1,9 @@
 import { useEffect, useState } from "react";
 import { Onedata } from "../components/Onedata";
 
-//
-let countHere = 0;
-
-//
-
 const Nebula = () => {
-  let anotherCount = 0;
   //
   const [dataArray, setDataArray] = useState([]);
-  const [buttonCount, setButtonCount] = useState(anotherCount);
   //
   useEffect(() => {
     //
@@ -48,7 +41,7 @@ const Nebula = () => {
       const { tasks } = await updateResonse.json();
       console.log(tasks, "tasks from statusHandler button func");
       //
-      // setDataArray(tasks);
+      setDataArray(tasks);
       ///////////////////////////////////////////////////////////
       // now update the dataArray to show the updated data
       // const response = await fetch("http://localhost:3006/tasks");
@@ -62,28 +55,8 @@ const Nebula = () => {
     }
   };
   //
-  const deleteHandler = () => {
-    countHere = countHere + 1;
-
-    console.log(countHere, "countHere");
-
-    // setButtonCount(countHere);
-    // console.log(buttonCount);
-  };
-  //
-  const deleteHandler1 = () => {
-    anotherCount = anotherCount + 1;
-
-    console.log(anotherCount, "anotherCount");
-
-    setButtonCount(anotherCount);
-    // console.log(buttonCount);
-  };
-  //
   return (
     <div>
-      <h2>{countHere}</h2>
-      <h2>{buttonCount}</h2>
       {dataArray.map((oneData) => (
         <li key={oneData._id}>
           <Onedata
@@ -91,9 +64,6 @@ const Nebula = () => {
             statusHandler={() => {
               statusHandler(oneData._id);
             }}
-            //
-            deleteHandler={deleteHandler}
-            deleteHandler1={deleteHandler1}
           />
         </li>
       ))}
