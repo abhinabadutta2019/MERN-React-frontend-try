@@ -37,12 +37,21 @@ const Nebula = () => {
           method: "PUT", // Use PUT method
         }
       );
-      console.log(updateResonse, "updateResonse");
+      // console.log(updateResonse, "updateResonse");
+      //
+      const updatedJson = await updateResonse.json();
+      //
+      // console.log(updatedJson, "updatedJson");
+      //
+      console.log(updatedJson.oneTask, "updatedJson.oneTask");
+      console.log(updatedJson.tasks, "updatedJson.oneTask");
+      //
+      setDataArray(updatedJson.tasks);
       ///////////////////////////////////////////////////////////
       // now update the dataArray to show the updated data
-      const response = await fetch("http://localhost:3006/tasks");
-      const json = await response.json();
-      setDataArray(json.tasks);
+      // const response = await fetch("http://localhost:3006/tasks");
+      // const json = await response.json();
+      // setDataArray(json.tasks);
 
       //
       // const json = await response.json();
