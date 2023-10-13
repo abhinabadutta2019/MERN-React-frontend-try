@@ -13,7 +13,7 @@ const Nebula = () => {
 
         // console.log(response, "response");
         const { tasks } = await response.json();
-        console.log(tasks, "tasks");
+        console.log(tasks, "tasks from useEffect");
         //
         setDataArray(tasks);
       } catch (err) {
@@ -21,6 +21,7 @@ const Nebula = () => {
       }
     };
     //
+
     //calling
     fetchMyData();
   }, []);
@@ -35,9 +36,10 @@ const Nebula = () => {
           method: "PUT", // Use PUT method
         }
       );
+      // console.log("Hi");
       //
       const { tasks } = await updateResonse.json();
-      console.log(tasks, "tasks");
+      console.log(tasks, "tasks from statusHandler button func");
       //
       setDataArray(tasks);
       ///////////////////////////////////////////////////////////
