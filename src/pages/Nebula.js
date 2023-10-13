@@ -55,6 +55,36 @@ const Nebula = () => {
     }
   };
   //
+  const deleteHandler = async (oneDataID) => {
+    // console.log("Hi");
+    // console.log(oneDataID);
+
+    try {
+      const deleteResponse = await fetch(
+        `http://localhost:3006/tasks/${oneDataID}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      // console.log(deleteResponse.status);
+      if (deleteResponse.status == 200) {
+        // console.log(deleteResponse.status, "deleteResponse.status");
+        const filterValue = dataArray.filter((item) => item._id !== oneDataID);
+        // console.log(filterValue, "filterValue");
+        //
+        setDataArray(filterValue);
+      }
+
+      // const deleteResult = await deleteResponse.json();
+      // console.log(deleteResult, "deleteResult");
+
+      //
+    } catch (err) {
+      console.log("err of deleteResponse", err);
+    }
+  };
+  //
   return (
     <div>
       {dataArray.map((oneData) => (
@@ -63,6 +93,9 @@ const Nebula = () => {
             dataFields={oneData}
             statusHandler={() => {
               statusHandler(oneData._id);
+            }}
+            deleteHandler={() => {
+              deleteHandler(oneData._id);
             }}
           />
         </li>

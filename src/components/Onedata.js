@@ -1,4 +1,4 @@
-const Onedata = ({ dataFields, statusHandler }) => {
+const Onedata = ({ dataFields, statusHandler, deleteHandler }) => {
   return (
     <>
       <h3>{dataFields.name}</h3>
@@ -13,7 +13,7 @@ const Onedata = ({ dataFields, statusHandler }) => {
       <button onClick={statusHandler}>Change status</button>
       {/*  */}
       <br />
-      <button>Delete button</button>
+      <button onClick={deleteHandler}>Delete button</button>
     </>
   );
 };
