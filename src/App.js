@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import { Nebula } from "./pages/Nebula";
+import { CreateForm } from "./pages/CreateForm";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/nebula" element={<Nebula />} />
+            <Route path="/createForm" element={<CreateForm />} />
           </Routes>
         </div>
       </BrowserRouter>

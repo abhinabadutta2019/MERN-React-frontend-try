@@ -88,6 +88,8 @@ const Nebula = () => {
   //
   return (
     <div>
+      <h2>Nebula</h2>
+      {/*  */}
       {dataArray.map((oneData) => (
         <li key={oneData._id}>
           <Onedata
