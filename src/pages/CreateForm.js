@@ -4,7 +4,9 @@ const CreateForm = () => {
   //
   //   const [formDataObject, setFormDataObject] = useState({});
   //
-  const formHandler = async () => {
+  const formHandler = async (event) => {
+    //
+    event.preventDefault();
     //
     // console.log(formDataObject, "formDataObject-start");
     //form html portion
@@ -25,9 +27,20 @@ const CreateForm = () => {
           description: description,
         }),
       });
+
+      //getting respone as json
+      const result = await response.json();
+
+      console.log(result, "result");
+      if (result.error) {
+        console.log(`error: ${result.error}`);
+      }
+
+      console.log("createdTask:", result.createdTask);
+
       //
-      const { createdTask } = await response.json();
-      console.log(createdTask, "createdTask");
+      //   const { createdTask } = await response.json();
+      //   console.log(createdTask, "createdTask");
       //
     } catch (err) {
       console.log(err);
@@ -40,12 +53,15 @@ const CreateForm = () => {
     <div>
       <h2>Create Form</h2>
 
-      <label>Name</label>
-      <input id="name" type="text" />
-      <label>Description</label>
-      <textarea id="description" type="text" />
-
-      <button onClick={formHandler}>Submit here</button>
+      {/* <form> */}
+      <form onSubmit={formHandler}>
+        <label>Name</label>
+        <input id="name" type="text" required />
+        <label>Description</label>
+        <textarea id="description" type="text" required />
+        {/*  */}
+        <button type="submit">Submit here</button>
+      </form>
     </div>
   );
 };
