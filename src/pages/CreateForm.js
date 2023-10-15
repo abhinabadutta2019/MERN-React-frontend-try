@@ -1,5 +1,9 @@
 const CreateForm = () => {
-  return <h2>Create Form</h2>;
+  return (
+    <div>
+      <h2>Create Form</h2>
+    </div>
+  );
 };
 
 export { CreateForm };
