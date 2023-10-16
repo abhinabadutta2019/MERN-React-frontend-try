@@ -3,6 +3,8 @@ import { useAuthContext } from "../hooks/useAuthContext";
 
 const Home = () => {
   const [dataArray, setDataArray] = useState([]);
+
+  const { user } = useAuthContext();
   //
   //here useEffect fires a function when the component is renderd
   //[] empty array( called dependency array) argument makes sure, useEffect hook only fires - the inner function -onece  , only when the component is renderd
@@ -14,7 +16,9 @@ const Home = () => {
 
     const fetchMyData = async () => {
       try {
-        const response = await fetch("http://localhost:3006/tasks");
+        const response = await fetch("http://localhost:3006/tasks", {
+          headers: { Authorization: `Bearer ${user.token}` },
+        });
         //??
         const json = await response.json();
 
@@ -23,17 +27,27 @@ const Home = () => {
         //
         if (response.ok) {
           //updating state
+
+          console.log(json, "json");
           //   setDataArray(json);
           setDataArray(json.tasks);
         }
+        //
       } catch (err) {
         console.error("Error fetching data:", err);
       }
     };
 
+    // this to check user and call the useeffect
+
+    if (user) {
+      // console.log(user);
+      fetchMyData();
+    }
+
     // calling the function- fetchMyData-created inside useEffect
-    fetchMyData();
-  }, []);
+    // fetchMyData();
+  }, [user]);
   //
   return (
     <div className="Home">
