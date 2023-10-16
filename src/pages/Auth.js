@@ -31,7 +31,7 @@ const Auth = () => {
         console.log(`error: ${result.error}`);
       }
 
-      console.log(result, "result");
+      //   console.log(result, "result");
 
       if (result.token) {
         //localstorage
@@ -67,13 +67,20 @@ const Auth = () => {
       });
       //
       const loginResult = await response.json();
+      //
       if (loginResult.error) {
         console.log(`error: ${loginResult.error}`);
       }
 
+      if (loginResult.token) {
+        //localstorage
+        localStorage.setItem("user", JSON.stringify(loginResult));
+        // updating auth context
+        dispatch({ type: "LOGIN", payload: loginResult });
+      }
+
       console.log("loggedUser:", loginResult);
       //
-      localStorage.setItem("user", JSON.stringify(loginResult));
     } catch (err) {
       console.log(err);
     }
