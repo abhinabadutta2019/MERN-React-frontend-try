@@ -1,6 +1,6 @@
 const Auth = () => {
   //
-  const registrationHandler = (event) => {
+  const registrationHandler = async (event) => {
     event.preventDefault();
     // console.log("Hi");
 
@@ -9,7 +9,25 @@ const Auth = () => {
 
     const formObject = { username: username, password: password };
     try {
-      console.log(formObject, "formObject");
+      const response = await fetch("http://localhost:3006/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: username,
+          password: password,
+        }),
+      });
+      //   console.log(formObject, "formObject");
+
+      //getting respone as json
+      const result = await response.json();
+
+      //   console.log(result.user, "result.user");
+      if (result.error) {
+        console.log(`error: ${result.error}`);
+      }
+
+      console.log("createdUser:", result.message);
     } catch (err) {
       console.log(err);
     }
@@ -17,7 +35,8 @@ const Auth = () => {
   //
   return (
     <div>
-      <h2>Auth Page</h2>
+      <h1>Auth Page</h1>
+      <h2>Register form</h2>
       <form onSubmit={registrationHandler}>
         <label>Username</label>
         <input id="username" type="text" required />
