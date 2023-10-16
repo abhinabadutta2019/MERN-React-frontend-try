@@ -27,6 +27,9 @@ const Auth = () => {
         console.log(`error: ${result.error}`);
       }
 
+      //
+      localStorage.setItem("user", JSON.stringify(result));
+
       console.log("createdUser:", result);
     } catch (err) {
       console.log(err);
@@ -57,7 +60,10 @@ const Auth = () => {
       if (loginResult.error) {
         console.log(`error: ${loginResult.error}`);
       }
+
       console.log("loggedUser:", loginResult);
+      //
+      localStorage.setItem("user", JSON.stringify(loginResult));
     } catch (err) {
       console.log(err);
     }
