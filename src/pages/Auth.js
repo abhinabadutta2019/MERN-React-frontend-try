@@ -31,10 +31,14 @@ const Auth = () => {
         console.log(`error: ${result.error}`);
       }
 
-      //localstorage
-      localStorage.setItem("user", JSON.stringify(result));
-      // updating auth context
-      dispatch({ type: "LOGIN", payload: result });
+      console.log(result, "result");
+
+      if (result.token) {
+        //localstorage
+        localStorage.setItem("user", JSON.stringify(result));
+        // updating auth context
+        dispatch({ type: "LOGIN", payload: result });
+      }
 
       console.log("createdUser:", result);
     } catch (err) {
