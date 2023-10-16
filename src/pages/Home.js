@@ -17,6 +17,7 @@ const Home = () => {
     const fetchMyData = async () => {
       try {
         const response = await fetch("http://localhost:3006/tasks", {
+          //this line is creating Bearer-- that gets verify with jwt.sign
           headers: { Authorization: `Bearer ${user.token}` },
         });
         //??

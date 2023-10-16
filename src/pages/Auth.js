@@ -75,6 +75,11 @@ const Auth = () => {
         // Save user data and update authentication
         localStorage.setItem("user", JSON.stringify(loginResult));
         login(loginResult); // Use login function
+
+        console.log(
+          login(loginResult),
+          "login(loginResult) from login frontend func"
+        );
       }
 
       console.log("loggedUser:", loginResult);
