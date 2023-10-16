@@ -2,7 +2,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 
 const Auth = () => {
   //useAuthContext hook
-  const { dispatch } = useAuthContext();
+  const { login } = useAuthContext(); // Use login function
   //
   const registrationHandler = async (event) => {
     event.preventDefault();
@@ -34,10 +34,9 @@ const Auth = () => {
       //   console.log(result, "result");
 
       if (result.token) {
-        //localstorage
+        // Save user data and update authentication
         localStorage.setItem("user", JSON.stringify(result));
-        // updating auth context
-        dispatch({ type: "LOGIN", payload: result });
+        login(result); // Use login function
       }
 
       console.log("createdUser:", result);
@@ -73,10 +72,9 @@ const Auth = () => {
       }
 
       if (loginResult.token) {
-        //localstorage
+        // Save user data and update authentication
         localStorage.setItem("user", JSON.stringify(loginResult));
-        // updating auth context
-        dispatch({ type: "LOGIN", payload: loginResult });
+        login(loginResult); // Use login function
       }
 
       console.log("loggedUser:", loginResult);
