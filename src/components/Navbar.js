@@ -8,6 +8,7 @@ const Navbar = () => {
         <Link to="/">
           <h1>My App Title</h1>
         </Link>
+        <Link to="/auth">Auth</Link>
         <Link to="/nebula">Nebula</Link>
         <Link to="/CreateForm">Create Form</Link>
       </div>
