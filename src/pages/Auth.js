@@ -27,7 +27,7 @@ const Auth = () => {
         console.log(`error: ${result.error}`);
       }
 
-      console.log("createdUser:", result.message);
+      console.log("createdUser:", result);
     } catch (err) {
       console.log(err);
     }
@@ -57,7 +57,7 @@ const Auth = () => {
       if (loginResult.error) {
         console.log(`error: ${loginResult.error}`);
       }
-      console.log("createdUser:", loginResult.message);
+      console.log("loggedUser:", loginResult);
     } catch (err) {
       console.log(err);
     }
