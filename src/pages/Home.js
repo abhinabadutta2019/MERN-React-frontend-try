@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Home = () => {
   const [dataArray, setDataArray] = useState([]);
