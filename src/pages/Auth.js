@@ -1,4 +1,8 @@
+import { useAuthContext } from "../hooks/useAuthContext";
+
 const Auth = () => {
+  //useAuthContext hook
+  const { dispatch } = useAuthContext();
   //
   const registrationHandler = async (event) => {
     event.preventDefault();
@@ -27,8 +31,10 @@ const Auth = () => {
         console.log(`error: ${result.error}`);
       }
 
-      //
+      //localstorage
       localStorage.setItem("user", JSON.stringify(result));
+      // updating auth context
+      dispatch({ type: "LOGIN", payload: result });
 
       console.log("createdUser:", result);
     } catch (err) {
