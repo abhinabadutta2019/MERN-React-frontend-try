@@ -1,8 +1,11 @@
-import { useAuthContext } from "../hooks/useAuthContext";
-
+// import { useAuthContext } from "../hooks/useAuthContext";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 const Auth = () => {
   //useAuthContext hook
-  const { login } = useAuthContext(); // Use login function
+  // const { login } = useAuthContext(); // Use login function
+  //
+  const { login } = useContext(AuthContext);
   //
   const registrationHandler = async (event) => {
     event.preventDefault();

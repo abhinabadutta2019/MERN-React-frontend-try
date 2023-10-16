@@ -1,10 +1,15 @@
-import { useEffect, useState } from "react";
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useEffect, useState, useContext } from "react";
+// import { useAuthContext } from "../hooks/useAuthContext";
+
+import { AuthContext } from "../context/AuthContext";
 
 const Home = () => {
   const [dataArray, setDataArray] = useState([]);
 
-  const { user } = useAuthContext();
+  // const { user } = useAuthContext();
+
+  const { user } = useContext(AuthContext); // Access user from AuthContext directly
+
   //
   //here useEffect fires a function when the component is renderd
   //[] empty array( called dependency array) argument makes sure, useEffect hook only fires - the inner function -onece  , only when the component is renderd
