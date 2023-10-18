@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 
 // Create a context named AuthContext
 export const AuthContext = createContext();
-
+//
 // AuthContextProvider component, used to provide authentication context to its children
 
 export const AuthContextProvider = ({ children }) => {
