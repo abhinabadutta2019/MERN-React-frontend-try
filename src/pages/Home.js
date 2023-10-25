@@ -44,6 +44,7 @@ const Home = () => {
       }
     };
 
+    //
     // this to check user and call the useeffect
 
     if (user) {
