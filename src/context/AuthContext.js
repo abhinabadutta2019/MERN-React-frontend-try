@@ -16,7 +16,7 @@ const AuthContextProvider = ({ children }) => {
     //
     const fetchUserLS = async () => {
       try {
-        console.log("calling fetchUserLS ");
+        // console.log("calling fetchUserLS ");
         const user = localStorage.getItem("user");
         //
         setUser(user);
@@ -26,7 +26,7 @@ const AuthContextProvider = ({ children }) => {
       //
     };
 
-    console.log("user: in fetchUserLS ", user);
+    // console.log("user: in fetchUserLS ", user);
     // calling the function-
     fetchUserLS();
     //

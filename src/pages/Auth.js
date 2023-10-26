@@ -68,10 +68,12 @@ const Auth = () => {
       //   console.log(`error: ${loginResult.error}`);
       // }
 
-      if (loginResult.user) {
-        console.log(loginResult.user);
+      console.log(loginResult);
+
+      if (loginResult.token) {
+        console.log(loginResult, "loginResult: from loginHandler()");
         //authContext hook
-        login(loginResult.user);
+        login(loginResult);
         //
         console.log(user);
       }

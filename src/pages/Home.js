@@ -1,7 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
+//
 
 const Home = () => {
   const [dataArray, setDataArray] = useState([]);
+  //
+  const { user } = useContext(AuthContext);
   //
   //here useEffect fires a function when the component is renderd
   //[] empty array( called dependency array) argument makes sure, useEffect hook only fires - the inner function -onece  , only when the component is renderd
@@ -13,7 +17,12 @@ const Home = () => {
 
     const fetchMyData = async () => {
       try {
-        const response = await fetch("http://localhost:3006/tasks");
+        const response = await fetch("http://localhost:3006/tasks", {
+          // "Content-Type": "application/json",
+          // Authorization: `Bearer ${token}`,
+        });
+        //
+        console.log(user, "user: from Home.js");
         //??
         const json = await response.json();
 
