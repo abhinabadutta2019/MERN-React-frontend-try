@@ -6,9 +6,21 @@ const Home = () => {
   const [dataArray, setDataArray] = useState([]);
   //
   const { user } = useContext(AuthContext);
+
+  // console.log(useContext(AuthContext));
+
+  const userObj = JSON.parse(user);
+  console.log(userObj, "userObj--");
+
   //
-  //here useEffect fires a function when the component is renderd
-  //[] empty array( called dependency array) argument makes sure, useEffect hook only fires - the inner function -onece  , only when the component is renderd
+  if (userObj) {
+    // const userObj = JSON.parse(user);
+    const token = userObj.token;
+    console.log(token, "token:from Home.js");
+  }
+
+  //
+  // console.log(user.token, "user: from Home.js");
   //
 
   useEffect(() => {
@@ -18,11 +30,11 @@ const Home = () => {
     const fetchMyData = async () => {
       try {
         const response = await fetch("http://localhost:3006/tasks", {
-          // "Content-Type": "application/json",
-          // Authorization: `Bearer ${token}`,
+          //this line is creating Bearer-- that gets verify with jwt.sign
+          headers: { Authorization: `Bearer ${userObj.token}` },
         });
         //
-        console.log(user, "user: from Home.js");
+
         //??
         const json = await response.json();
 
@@ -40,8 +52,10 @@ const Home = () => {
     };
 
     // calling the function- fetchMyData-created inside useEffect
-    fetchMyData();
-  }, []);
+    if (user) {
+      fetchMyData();
+    }
+  }, [user]);
   //
   return (
     <div className="Home">
