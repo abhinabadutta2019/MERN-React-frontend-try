@@ -1,4 +1,14 @@
+//
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
+
+//
+
 const Auth = () => {
+  //authContext hook
+  const { user, login } = useContext(AuthContext);
+  //
+  console.log(user, "user: in Auth.js ");
   //
   const registrationHandler = async (event) => {
     event.preventDefault();
@@ -54,10 +64,19 @@ const Auth = () => {
       });
       //
       const loginResult = await response.json();
-      if (loginResult.error) {
-        console.log(`error: ${loginResult.error}`);
+      // if (loginResult.error) {
+      //   console.log(`error: ${loginResult.error}`);
+      // }
+
+      if (loginResult.user) {
+        console.log(loginResult.user);
+        //authContext hook
+        login(loginResult.user);
+        //
+        console.log(user);
       }
-      console.log("loggedUser:", loginResult);
+
+      // console.log("loggedUser:", loginResult);
     } catch (err) {
       console.log(err);
     }
