@@ -57,6 +57,7 @@ const Nebula = () => {
         `http://localhost:3006/tasks/updateTaskCompleted/${oneDataID}`,
         {
           method: "PUT", // Use PUT method
+          headers: { Authorization: `Bearer ${userObj.token}` },
         }
       );
       // console.log("Hi");
@@ -87,6 +88,7 @@ const Nebula = () => {
         `http://localhost:3006/tasks/${oneDataID}`,
         {
           method: "DELETE",
+          headers: { Authorization: `Bearer ${userObj.token}` },
         }
       );
 
