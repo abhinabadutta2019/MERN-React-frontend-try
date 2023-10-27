@@ -24,8 +24,6 @@ const CreateForm = () => {
 
     const formObject = { name: name, description: description };
     console.log(formObject, "formObject");
-    // setFormDataObject(formObject);
-    // console.log(formDataObject, "formDataObject-end");
 
     try {
       const response = await fetch("http://localhost:3006/tasks", {
@@ -49,11 +47,6 @@ const CreateForm = () => {
       }
 
       console.log("createdTask:", result.createdTask);
-
-      //
-      //   const { createdTask } = await response.json();
-      //   console.log(createdTask, "createdTask");
-      //
     } catch (err) {
       console.log(err);
     }

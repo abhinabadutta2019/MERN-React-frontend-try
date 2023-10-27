@@ -17,7 +17,7 @@ const Auth = () => {
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    const formObject = { username: username, password: password };
+    // const formObject = { username: username, password: password };
     try {
       const response = await fetch("http://localhost:3006/users", {
         method: "POST",
@@ -33,8 +33,14 @@ const Auth = () => {
       const result = await response.json();
 
       //   console.log(result.user, "result.user");
-      if (result.error) {
-        console.log(`error: ${result.error}`);
+      // if (result.error) {
+      //   console.log(`error: ${result.error}`);
+      // }
+      if (result.token) {
+        //
+        console.log(result, "result: from registrationHandler()");
+        //authContext hook
+        login(result);
       }
 
       console.log("createdUser:", result);
@@ -50,7 +56,7 @@ const Auth = () => {
     const username = document.getElementById("loginUsername").value;
     const password = document.getElementById("loginPassword").value;
     //
-    const formObject = { username: username, password: password };
+
     //
 
     try {
