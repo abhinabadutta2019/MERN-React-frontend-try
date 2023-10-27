@@ -53,7 +53,7 @@ const Nebula = () => {
     // console.log(e);
 
     try {
-      const updateResonse = await fetch(
+      const updateRepsonse = await fetch(
         `http://localhost:3006/tasks/updateTaskCompleted/${oneDataID}`,
         {
           method: "PUT", // Use PUT method
@@ -62,15 +62,17 @@ const Nebula = () => {
       );
       // console.log("Hi");
       //
-      const { tasks } = await updateResonse.json();
-      console.log(tasks, "tasks from statusHandler button func");
-      //
-      setDataArray(tasks);
+      // const { tasks } = await updateRepsonse.json();
+      // console.log(tasks, "tasks from statusHandler button func");
+      // //
+      // setDataArray(tasks);
       ///////////////////////////////////////////////////////////
       // now update the dataArray to show the updated data
-      // const response = await fetch("http://localhost:3006/tasks");
-      // const json = await response.json();
-      // setDataArray(json.tasks);
+      const response = await fetch("http://localhost:3006/tasks", {
+        headers: { Authorization: `Bearer ${userObj.token}` },
+      });
+      const json = await response.json();
+      setDataArray(json.tasks);
 
       //
       // const json = await response.json();
