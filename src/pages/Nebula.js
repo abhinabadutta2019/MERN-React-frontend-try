@@ -94,7 +94,7 @@ const Nebula = () => {
 
       console.log(deleteResponse.status, "deleteResponse.status");
       //checking if status is 200
-      if (deleteResponse.status == 200) {
+      if (deleteResponse.status === 200) {
         // console.log(deleteResponse.status, "deleteResponse.status");
         const filterValue = dataArray.filter((item) => item._id !== oneDataID);
         // console.log(filterValue, "filterValue");
