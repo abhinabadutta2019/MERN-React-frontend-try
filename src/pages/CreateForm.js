@@ -1,8 +1,17 @@
-import { useState } from "react";
+import { useContext } from "react";
+//
+import { AuthContext } from "../context/AuthContext";
 
 const CreateForm = () => {
+  //authContext hook
+  const { user } = useContext(AuthContext);
+  const userObj = JSON.parse(user);
   //
-  //   const [formDataObject, setFormDataObject] = useState({});
+  if (userObj) {
+    // const userObj = JSON.parse(user);
+    const token = userObj.token;
+    console.log(token, "token:from Home.js");
+  }
   //
   const formHandler = async (event) => {
     //
@@ -21,7 +30,10 @@ const CreateForm = () => {
     try {
       const response = await fetch("http://localhost:3006/tasks", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userObj.token}`,
+        },
         body: JSON.stringify({
           name: name,
           description: description,
