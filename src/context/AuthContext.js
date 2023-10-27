@@ -12,6 +12,12 @@ const AuthContextProvider = ({ children }) => {
     setUser(userData);
   };
   //
+  const logout = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+  };
+
+  //
   useEffect(() => {
     //
     const fetchUserLS = async () => {
@@ -34,7 +40,7 @@ const AuthContextProvider = ({ children }) => {
 
   return (
     <>
-      <AuthContext.Provider value={{ user, login }}>
+      <AuthContext.Provider value={{ user, login, logout }}>
         {children}
       </AuthContext.Provider>
     </>
