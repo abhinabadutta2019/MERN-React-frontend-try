@@ -10,7 +10,7 @@ const Home = () => {
   // console.log(useContext(AuthContext));
 
   const userObj = JSON.parse(user);
-  console.log(userObj, "userObj--");
+  // console.log(userObj, "userObj--");
 
   //
   if (userObj) {

@@ -15,6 +15,7 @@ const AuthContextProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("user");
     setUser(null);
+    console.log("Logout called");
   };
 
   //

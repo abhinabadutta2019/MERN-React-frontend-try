@@ -17,12 +17,21 @@ const Navbar = () => {
         <Link to="/">
           <h1>My App Title</h1>
         </Link>
-        <Link to="/auth">Auth</Link>
-        <Link to="/nebula">Nebula</Link>
-        <Link to="/CreateForm">Create Form</Link>
         {/*  */}
-
-        <button onClick={logoutHandler}>Logout</button>
+        <Link to="/CreateForm">Create Task</Link>
+        <Link to="/nebula">Nebula</Link>
+        {/*  */}
+        {user ? (
+          <>
+            <button onClick={logoutHandler}>Logout</button>
+          </>
+        ) : (
+          <>
+            <Link to="/auth">Auth</Link>
+          </>
+        )}
+        {/* <Link to="/auth">Auth</Link> */}
+        {/* <button onClick={logoutHandler}>Logout</button> */}
       </div>
     </header>
   );
