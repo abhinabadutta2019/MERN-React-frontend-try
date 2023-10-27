@@ -8,7 +8,7 @@ const Auth = () => {
   //authContext hook
   const { user, login } = useContext(AuthContext);
   //
-  console.log(user, "user: in Auth.js ");
+  // console.log(user, "user: in Auth.js ");
   //
   const registrationHandler = async (event) => {
     event.preventDefault();
@@ -75,7 +75,7 @@ const Auth = () => {
         //authContext hook
         login(loginResult);
         //
-        console.log(user);
+        // console.log(user);
       }
 
       // console.log("loggedUser:", loginResult);
