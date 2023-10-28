@@ -1,22 +1,42 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 //pages and components
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import { Nebula } from "./pages/Nebula";
 import { CreateForm } from "./pages/CreateForm";
 import { Auth } from "./pages/Auth";
-
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
 function App() {
+  //
+  const { user } = useContext(AuthContext);
+  //
   return (
     <div className="App">
       <BrowserRouter>
         <Navbar />
         <div className="pages">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/nebula" element={<Nebula />} />
-            <Route path="/createForm" element={<CreateForm />} />
-            <Route path="/auth" element={<Auth />} />
+            {/* <Route path="/" element={<Home />} /> */}
+            <Route
+              path="/"
+              element={user ? <Home /> : <Navigate to="/auth" />}
+            />
+            {/* <Route path="/nebula" element={<Nebula />} /> */}
+            <Route
+              path="/nebula"
+              element={user ? <Nebula /> : <Navigate to="/auth" />}
+            />
+            {/* <Route path="/createForm" element={<CreateForm />} /> */}
+            <Route
+              path="/createForm"
+              element={user ? <CreateForm /> : <Navigate to="/" />}
+            />
+            {/* <Route path="/auth" element={<Auth />} /> */}
+            <Route
+              path="/auth"
+              element={!user ? <Auth /> : <Navigate to="/" />}
+            />
           </Routes>
         </div>
       </BrowserRouter>
