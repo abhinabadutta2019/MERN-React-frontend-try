@@ -15,21 +15,27 @@ const Navbar = () => {
       <div className="container">
         {/* How link is different to  <Route path="/" */}
         <Link to="/">
-          <h1>My App Title</h1>
+          <h1>Task Buddy</h1>
         </Link>
-        {/*  */}
-        <Link to="/CreateForm">Create Task</Link>
-        <Link to="/nebula">Nebula</Link>
-        {/*  */}
-        {user ? (
-          <>
-            <button onClick={logoutHandler}>Logout</button>
-          </>
-        ) : (
-          <>
-            <Link to="/auth">Auth</Link>
-          </>
-        )}
+
+        <nav>
+          {user && (
+            <>
+              <Link to="/CreateForm">Create-Task </Link>
+              <Link to="/nebula"> Nebula </Link>
+              <button onClick={logoutHandler}>Logout</button>
+            </>
+          )}
+          {!user && (
+            <>
+              <Link to="/auth">Auth</Link>
+            </>
+          )}
+        </nav>
+
+        {/* <Link to="/CreateForm">Create Task</Link>
+        <Link to="/nebula">Nebula</Link> */}
+
         {/* <Link to="/auth">Auth</Link> */}
         {/* <button onClick={logoutHandler}>Logout</button> */}
       </div>
