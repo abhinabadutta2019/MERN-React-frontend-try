@@ -1,5 +1,5 @@
 //
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 //
@@ -8,8 +8,14 @@ const Auth = () => {
   //authContext hook
   const { login } = useContext(AuthContext);
   //
-  // console.log(user, "user: in Auth.js ");
+  const [isRegisterForm, setIsRegisterForm] = useState(true);
+
   //
+  const toggleForm = () => {
+    setIsRegisterForm((prevIsRegisterForm) => !prevIsRegisterForm);
+  };
+  //
+
   const registrationHandler = async (event) => {
     event.preventDefault();
     // console.log("Hi");
@@ -93,23 +99,32 @@ const Auth = () => {
   return (
     <div>
       <h1>Auth Page</h1>
-      <h2>Register form</h2>
-      <form onSubmit={registrationHandler}>
-        <label>Username</label>
-        <input id="username" type="text" required />
-        <label>Password</label>
-        <input id="password" type="text" required />
-        <button type="submit">Register</button>
-      </form>
       {/*  */}
-      <h2>Login form</h2>
-      <form onSubmit={loginHandler}>
-        <label>Username</label>
-        <input id="loginUsername" type="text" required />
-        <label>Password</label>
-        <input id="loginPassword" type="text" required />
-        <button type="submit">Login</button>
-      </form>
+      <button onClick={toggleForm}>
+        {isRegisterForm ? "Switch to Login" : "Switch to Register"}
+      </button>
+      {/*  */}
+      <h2>{isRegisterForm ? "Register form" : "Login form"}</h2>
+      {/*  */}
+
+      {isRegisterForm ? (
+        <form onSubmit={registrationHandler}>
+          <label>Username</label>
+          <input id="username" type="text" required />
+          <label>Password</label>
+          <input id="password" type="text" required />
+          <button type="submit">Register</button>
+        </form>
+      ) : (
+        // <h2>Login form</h2>
+        <form onSubmit={loginHandler}>
+          <label>Username</label>
+          <input id="loginUsername" type="text" required />
+          <label>Password</label>
+          <input id="loginPassword" type="text" required />
+          <button type="submit">Login</button>
+        </form>
+      )}
     </div>
   );
 };
