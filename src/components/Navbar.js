@@ -14,7 +14,7 @@ const Navbar = () => {
     <header>
       <div className="container">
         {/* How link is different to  <Route path="/" */}
-        <Link to="/">
+        <Link to="/home">
           <h1>Task Buddy</h1>
         </Link>
 

@@ -18,10 +18,7 @@ function App() {
         <div className="pages">
           <Routes>
             {/* <Route path="/" element={<Home />} /> */}
-            <Route
-              path="/"
-              element={user ? <Home /> : <Navigate to="/auth" />}
-            />
+
             {/* <Route path="/nebula" element={<Nebula />} /> */}
             <Route
               path="/nebula"
@@ -30,12 +27,17 @@ function App() {
             {/* <Route path="/createForm" element={<CreateForm />} /> */}
             <Route
               path="/createForm"
-              element={user ? <CreateForm /> : <Navigate to="/" />}
+              element={user ? <CreateForm /> : <Navigate to="/auth" />}
             />
             {/* <Route path="/auth" element={<Auth />} /> */}
             <Route
               path="/auth"
-              element={!user ? <Auth /> : <Navigate to="/" />}
+              element={!user ? <Auth /> : <Navigate to="/home" />}
+            />
+            {/*  */}
+            <Route
+              path="/home"
+              element={user ? <Home /> : <Navigate to="/auth" />}
             />
           </Routes>
         </div>
