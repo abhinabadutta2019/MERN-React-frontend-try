@@ -103,8 +103,8 @@ const Auth = () => {
   return (
     <div className="container mt-5">
       {/* <h1 className="mb-4">Auth Page</h1> */}
-      <h2>{isRegisterForm ? "Register form" : "Login form"}</h2>
-      <button className="btn btn-primary" onClick={toggleForm}>
+      <h2>{isRegisterForm ? "Register Form" : "Login Form"}</h2>
+      <button className="btn btn-outline-secondary" onClick={toggleForm}>
         {isRegisterForm ? "Switch to Login" : "Switch to Register"}
       </button>
 

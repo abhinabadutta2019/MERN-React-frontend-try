@@ -7,7 +7,9 @@ const Onedata = ({ dataFields, statusHandler, deleteHandler }) => {
         <h3>{dataFields.name}</h3>
         <p>Description: {dataFields.description}</p>
         <p>
-          Work status: {dataFields.completed ? "Completed" : "Not completed"}
+          <strong>
+            Work status: {dataFields.completed ? "Completed" : "Not completed"}
+          </strong>
         </p>
       </div>
       <div>
