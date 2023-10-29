@@ -1,48 +1,74 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+//
+// import Navbar from 'react-bootstrap/Navbar';
+// import Container from "react-bootstrap/Container";
+// import Nav from "react-bootstrap/Nav";
+//
 
 const Navbar = () => {
   const { logout, user } = useContext(AuthContext);
-  //
+
   const logoutHandler = () => {
-    //
     logout();
   };
 
-  //
   return (
-    <header>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container">
-        {/* How link is different to  <Route path="/" */}
-        <Link to="/nebula">
-          <h1>Task Buddy</h1>
+        <Link to="/nebula" className="navbar-brand">
+          Task Buddy
         </Link>
 
-        <nav>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            {user && (
+              <>
+                <li className="nav-item">
+                  <Link to="/CreateForm" className="nav-link">
+                    Create Task
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/nebula" className="nav-link">
+                    Task Details
+                  </Link>
+                </li>
+              </>
+            )}
+          </ul>
+
           {user && (
-            <>
-              <Link to="/CreateForm">Create-Task </Link>
-              <Link to="/nebula"> Task-Details </Link>
-              {/* <button onClick={logoutHandler}>Logout</button> */}
-            </>
+            <button className="btn btn-outline-danger" onClick={logoutHandler}>
+              Logout
+            </button>
           )}
+
           {!user && (
-            <>
-              <Link to="/auth">Auth</Link>
-            </>
+            <ul className="navbar-nav">
+              <li className="nav-item">
+                <Link to="/auth" className="nav-link">
+                  Auth
+                </Link>
+              </li>
+            </ul>
           )}
-        </nav>
-        {/* button */}
-        {user && <button onClick={logoutHandler}>Logout</button>}
-
-        {/* <Link to="/CreateForm">Create Task</Link>
-        <Link to="/nebula">Nebula</Link> */}
-
-        {/* <Link to="/auth">Auth</Link> */}
-        {/* <button onClick={logoutHandler}>Logout</button> */}
+        </div>
       </div>
-    </header>
+    </nav>
   );
 };
 
