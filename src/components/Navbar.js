@@ -9,6 +9,9 @@ const Navbar = () => {
     //
     logout();
   };
+
+  // user -- string to object
+  const userObj = JSON.parse(user);
   //
   return (
     <header>
@@ -23,6 +26,9 @@ const Navbar = () => {
             <>
               <Link to="/CreateForm">Create-Task </Link>
               <Link to="/nebula"> Task-Details </Link>
+              <span>
+                <strong>Username : {userObj.username}</strong>
+              </span>
               <button onClick={logoutHandler}>Logout</button>
             </>
           )}
