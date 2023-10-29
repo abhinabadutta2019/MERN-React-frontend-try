@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 //
 import { AuthContext } from "../context/AuthContext";
 
@@ -6,6 +6,8 @@ const CreateForm = () => {
   //authContext hook
   const { user } = useContext(AuthContext);
   const userObj = JSON.parse(user);
+  //
+  const [error, setError] = useState(""); // State variable for error
   //
   if (userObj) {
     // const userObj = JSON.parse(user);
@@ -38,17 +40,24 @@ const CreateForm = () => {
         }),
       });
 
-      //getting respone as json
-      const result = await response.json();
+      if (response.ok) {
+        //getting respone as json
+        const result = await response.json();
 
-      console.log(result, "result");
-      if (result.error) {
-        console.log(`error: ${result.error}`);
+        console.log(result, "result");
+        // if (result.error) {
+        //   console.log(`error: ${result.error}`);
+        // }
+
+        // console.log("createdTask:", result.createdTask);
+      } else {
+        const errorData = await response.json();
+
+        setError(errorData.error); // Show Zod validation error
       }
-
-      console.log("createdTask:", result.createdTask);
     } catch (err) {
       console.log(err);
+      setError("An error occurred");
     }
 
     //
@@ -57,7 +66,8 @@ const CreateForm = () => {
   return (
     <div>
       <h2>Create Form</h2>
-
+      {/* error */}
+      {error && <div className="error-message">{error}</div>}
       {/* <form> */}
       <form onSubmit={formHandler}>
         <label>Name</label>

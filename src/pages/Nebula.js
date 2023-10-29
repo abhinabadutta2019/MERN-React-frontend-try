@@ -117,19 +117,20 @@ const Nebula = () => {
     <div>
       <h2>Nebula</h2>
       {/*  */}
-      {dataArray.map((oneData) => (
-        <li key={oneData._id}>
-          <Onedata
-            dataFields={oneData}
-            statusHandler={() => {
-              statusHandler(oneData._id);
-            }}
-            deleteHandler={() => {
-              deleteHandler(oneData._id);
-            }}
-          />
-        </li>
-      ))}
+      {dataArray &&
+        dataArray.map((oneData) => (
+          <li key={oneData._id}>
+            <Onedata
+              dataFields={oneData}
+              statusHandler={() => {
+                statusHandler(oneData._id);
+              }}
+              deleteHandler={() => {
+                deleteHandler(oneData._id);
+              }}
+            />
+          </li>
+        ))}
     </div>
   );
 };
