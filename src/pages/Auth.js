@@ -101,33 +101,69 @@ const Auth = () => {
   };
   //
   return (
-    <div>
-      <h1>Auth Page</h1>
-      {/*  */}
-      <button onClick={toggleForm}>
+    <div className="container mt-5">
+      {/* <h1 className="mb-4">Auth Page</h1> */}
+      <h2>{isRegisterForm ? "Register form" : "Login form"}</h2>
+      <button className="btn btn-primary" onClick={toggleForm}>
         {isRegisterForm ? "Switch to Login" : "Switch to Register"}
       </button>
-      {/*  */}
-      <h2>{isRegisterForm ? "Register form" : "Login form"}</h2>
-      {/*  */}
-      {error && <div className="error-message">{error}</div>}{" "}
-      {/* Display error if error state is not empty */}
+
+      {error && <div className="alert alert-danger">{error}</div>}
       {isRegisterForm ? (
         <form onSubmit={registrationHandler}>
-          <label>Username</label>
-          <input id="username" type="text" required />
-          <label>Password</label>
-          <input id="password" type="text" required />
-          <button type="submit">Register</button>
+          <div className="mb-3">
+            <label htmlFor="username" className="form-label">
+              Username
+            </label>
+            <input
+              id="username"
+              type="text"
+              className="form-control"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">
+              Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              className="form-control"
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Register
+          </button>
         </form>
       ) : (
-        // <h2>Login form</h2>
         <form onSubmit={loginHandler}>
-          <label>Username</label>
-          <input id="loginUsername" type="text" required />
-          <label>Password</label>
-          <input id="loginPassword" type="text" required />
-          <button type="submit">Login</button>
+          <div className="mb-3">
+            <label htmlFor="loginUsername" className="form-label">
+              Username
+            </label>
+            <input
+              id="loginUsername"
+              type="text"
+              className="form-control"
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="loginPassword" className="form-label">
+              Password
+            </label>
+            <input
+              id="loginPassword"
+              type="password"
+              className="form-control"
+              required
+            />
+          </div>
+          <button type="submit" className="btn btn-primary">
+            Login
+          </button>
         </form>
       )}
     </div>
