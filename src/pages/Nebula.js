@@ -116,21 +116,25 @@ const Nebula = () => {
   return (
     <div>
       <h2>Task Details</h2>
-      {/*  */}
-      {dataArray &&
-        dataArray.map((oneData) => (
-          <li key={oneData._id}>
-            <Onedata
-              dataFields={oneData}
-              statusHandler={() => {
-                statusHandler(oneData._id);
-              }}
-              deleteHandler={() => {
-                deleteHandler(oneData._id);
-              }}
-            />
-          </li>
-        ))}
+      {dataArray.length === 0 ? (
+        <p>No tasks found for this user.</p>
+      ) : (
+        <ul>
+          {dataArray.map((oneData) => (
+            <li key={oneData._id}>
+              <Onedata
+                dataFields={oneData}
+                statusHandler={() => {
+                  statusHandler(oneData._id);
+                }}
+                deleteHandler={() => {
+                  deleteHandler(oneData._id);
+                }}
+              />
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
