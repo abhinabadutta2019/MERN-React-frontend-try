@@ -46,6 +46,7 @@ const Auth = () => {
         }
       } else {
         const errorData = await response.json();
+
         setError(errorData.error); // Update error state
       }
 
@@ -85,7 +86,11 @@ const Auth = () => {
         }
       } else {
         const errorData = await response.json();
-        setError(errorData.message); // Update error state
+        if (errorData.error) {
+          setError(errorData.error); // Show Zod validation error
+        } else {
+          setError(errorData.message); // Show backend error
+        }
       }
 
       // console.log("loggedUser:", loginResult);
