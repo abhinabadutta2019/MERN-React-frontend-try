@@ -42,7 +42,7 @@ const CreateForm = () => {
   return (
     <div className="container mt-5">
       <h2>Create Form</h2>
-      {message && <div className="alert alert-danger">{message}</div>}
+      {message && <div className="alert alert-warning">{message}</div>}
       <form onSubmit={formHandler}>
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
