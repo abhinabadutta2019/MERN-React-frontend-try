@@ -22,7 +22,7 @@ const Navbar = () => {
           {user && (
             <>
               <Link to="/CreateForm">Create-Task </Link>
-              {/* <Link to="/nebula"> Nebula </Link> */}
+              <Link to="/nebula"> Task-Details </Link>
               <button onClick={logoutHandler}>Logout</button>
             </>
           )}
