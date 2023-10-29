@@ -7,7 +7,7 @@ const CreateForm = () => {
   const { user } = useContext(AuthContext);
   const userObj = JSON.parse(user);
   //
-  const [error, setError] = useState(""); // State variable for error
+  const [message, setMessage] = useState(""); // State variable for error
   //
   if (userObj) {
     // const userObj = JSON.parse(user);
@@ -43,7 +43,7 @@ const CreateForm = () => {
       if (response.ok) {
         //getting respone as json
         const result = await response.json();
-
+        setMessage("Task created succssfully");
         console.log(result, "result");
         // if (result.error) {
         //   console.log(`error: ${result.error}`);
@@ -53,11 +53,11 @@ const CreateForm = () => {
       } else {
         const errorData = await response.json();
 
-        setError(errorData.error); // Show Zod validation error
+        setMessage(errorData.error); // Show Zod validation error
       }
     } catch (err) {
       console.log(err);
-      setError("An error occurred");
+      setMessage("An error occurred");
     }
 
     //
@@ -67,7 +67,7 @@ const CreateForm = () => {
     <div>
       <h2>Create Form</h2>
       {/* error */}
-      {error && <div className="error-message">{error}</div>}
+      {message && <div className="error-message">{message}</div>}
       {/* <form> */}
       <form onSubmit={formHandler}>
         <label>Name</label>
