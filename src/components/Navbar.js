@@ -24,7 +24,7 @@ const Navbar = () => {
             <>
               <Link to="/CreateForm">Create-Task </Link>
               <Link to="/nebula"> Task-Details </Link>
-              <button onClick={logoutHandler}>Logout</button>
+              {/* <button onClick={logoutHandler}>Logout</button> */}
             </>
           )}
           {!user && (
@@ -33,6 +33,8 @@ const Navbar = () => {
             </>
           )}
         </nav>
+        {/* button */}
+        {user && <button onClick={logoutHandler}>Logout</button>}
 
         {/* <Link to="/CreateForm">Create Task</Link>
         <Link to="/nebula">Nebula</Link> */}
