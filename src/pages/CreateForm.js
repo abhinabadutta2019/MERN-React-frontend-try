@@ -13,17 +13,20 @@ const CreateForm = () => {
     const description = document.getElementById("description").value;
 
     try {
-      const response = await fetch("http://localhost:3006/tasks", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${userObj.token}`,
-        },
-        body: JSON.stringify({
-          name: name,
-          description: description,
-        }),
-      });
+      const response = await fetch(
+        "https://mern-taskapp-backend-284n.onrender.com/tasks",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userObj.token}`,
+          },
+          body: JSON.stringify({
+            name: name,
+            description: description,
+          }),
+        }
+      );
 
       if (response.ok) {
         const result = await response.json();

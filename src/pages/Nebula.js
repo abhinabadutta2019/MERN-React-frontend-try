@@ -21,10 +21,13 @@ const Nebula = () => {
     //
     const fetchMyData = async () => {
       try {
-        const response = await fetch("http://localhost:3006/tasks", {
-          //this line is creating Bearer-- that gets verify with jwt.sign
-          headers: { Authorization: `Bearer ${userObj.token}` },
-        });
+        const response = await fetch(
+          "https://mern-taskapp-backend-284n.onrender.com/tasks",
+          {
+            //this line is creating Bearer-- that gets verify with jwt.sign
+            headers: { Authorization: `Bearer ${userObj.token}` },
+          }
+        );
 
         // console.log(response, "response");
         // const { tasks } = await response.json();
@@ -54,7 +57,7 @@ const Nebula = () => {
 
     try {
       const updateRepsonse = await fetch(
-        `http://localhost:3006/tasks/updateTaskCompleted/${oneDataID}`,
+        `https://mern-taskapp-backend-284n.onrender.com/tasks/updateTaskCompleted/${oneDataID}`,
         {
           method: "PUT", // Use PUT method
           headers: { Authorization: `Bearer ${userObj.token}` },
@@ -68,9 +71,12 @@ const Nebula = () => {
       // setDataArray(tasks);
       ///////////////////////////////////////////////////////////
       // now update the dataArray to show the updated data
-      const response = await fetch("http://localhost:3006/tasks", {
-        headers: { Authorization: `Bearer ${userObj.token}` },
-      });
+      const response = await fetch(
+        "https://mern-taskapp-backend-284n.onrender.com/tasks",
+        {
+          headers: { Authorization: `Bearer ${userObj.token}` },
+        }
+      );
       const json = await response.json();
       setDataArray(json.tasks);
 
@@ -87,7 +93,7 @@ const Nebula = () => {
 
     try {
       const deleteResponse = await fetch(
-        `http://localhost:3006/tasks/${oneDataID}`,
+        `https://mern-taskapp-backend-284n.onrender.com/tasks/${oneDataID}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${userObj.token}` },

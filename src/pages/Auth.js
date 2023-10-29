@@ -27,14 +27,17 @@ const Auth = () => {
 
     // const formObject = { username: username, password: password };
     try {
-      const response = await fetch("http://localhost:3006/users", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username: username,
-          password: password,
-        }),
-      });
+      const response = await fetch(
+        "https://mern-taskapp-backend-284n.onrender.com/users",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: username,
+            password: password,
+          }),
+        }
+      );
       //   console.log(formObject, "formObject");
 
       if (response.ok) {
@@ -68,14 +71,17 @@ const Auth = () => {
     //
 
     try {
-      const response = await fetch("http://localhost:3006/users/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          username: username,
-          password: password,
-        }),
-      });
+      const response = await fetch(
+        "https://mern-taskapp-backend-284n.onrender.com/users/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            username: username,
+            password: password,
+          }),
+        }
+      );
       //
       if (response.ok) {
         const loginResult = await response.json();
