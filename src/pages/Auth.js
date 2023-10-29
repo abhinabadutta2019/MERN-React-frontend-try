@@ -37,23 +37,22 @@ const Auth = () => {
       });
       //   console.log(formObject, "formObject");
 
-      //getting response as json
-      const result = await response.json();
-
-      //   console.log(result.user, "result.user");
-      // if (result.error) {
-      //   console.log(`error: ${result.error}`);
-      // }
-      if (result.token) {
+      if (response.ok) {
+        const result = await response.json();
         //
-        console.log(result, "result: from registrationHandler()");
-        //authContext hook
-        login(result);
+        console.log(result, "regestration from login-response.ok");
+        if (result.token) {
+          login(result);
+        }
+      } else {
+        const errorData = await response.json();
+        setError(errorData.error); // Update error state
       }
 
-      console.log("createdUser:", result);
+      // console.log("createdUser:", result);
     } catch (err) {
       console.log(err);
+      setError("An error occurred");
     }
   };
   //
