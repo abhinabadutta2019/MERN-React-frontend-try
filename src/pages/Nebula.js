@@ -116,9 +116,7 @@ const Nebula = () => {
   return (
     <div>
       <h2>Task Details</h2>
-      {dataArray.length === 0 ? (
-        <p>No tasks found for this user.</p>
-      ) : (
+      {dataArray && dataArray.length > 0 ? (
         <ul>
           {dataArray.map((oneData) => (
             <li key={oneData._id}>
@@ -134,6 +132,8 @@ const Nebula = () => {
             </li>
           ))}
         </ul>
+      ) : (
+        <p>No tasks found for this user.</p>
       )}
     </div>
   );
