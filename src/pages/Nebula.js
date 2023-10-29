@@ -114,22 +114,21 @@ const Nebula = () => {
   };
   //
   return (
-    <div className="container mt-5">
+    <div className="container">
       <h2>Task Details</h2>
       {dataArray && dataArray.length > 0 ? (
         <ul className="list-group">
           {dataArray.map((oneData) => (
-            <li key={oneData._id} className="list-group-item">
-              <Onedata
-                dataFields={oneData}
-                statusHandler={() => {
-                  statusHandler(oneData._id);
-                }}
-                deleteHandler={() => {
-                  deleteHandler(oneData._id);
-                }}
-              />
-            </li>
+            <Onedata
+              key={oneData._id}
+              dataFields={oneData}
+              statusHandler={() => {
+                statusHandler(oneData._id);
+              }}
+              deleteHandler={() => {
+                deleteHandler(oneData._id);
+              }}
+            />
           ))}
         </ul>
       ) : (
