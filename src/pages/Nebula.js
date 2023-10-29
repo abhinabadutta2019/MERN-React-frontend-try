@@ -115,7 +115,7 @@ const Nebula = () => {
   //
   return (
     <div className="container">
-      <h2>Task Details</h2>
+      {/* <h2>Task Details</h2> */}
       {dataArray && dataArray.length > 0 ? (
         <ul className="list-group">
           {dataArray.map((oneData) => (
