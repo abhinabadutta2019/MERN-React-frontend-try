@@ -1,31 +1,16 @@
 import { useState, useContext } from "react";
-//
 import { AuthContext } from "../context/AuthContext";
 
 const CreateForm = () => {
-  //authContext hook
   const { user } = useContext(AuthContext);
   const userObj = JSON.parse(user);
-  //
-  const [message, setMessage] = useState(""); // State variable for error
-  //
-  if (userObj) {
-    // const userObj = JSON.parse(user);
-    const token = userObj.token;
-    console.log(token, "token:from Home.js");
-  }
-  //
+  const [message, setMessage] = useState("");
+
   const formHandler = async (event) => {
-    //
     event.preventDefault();
-    //
-    // console.log(formDataObject, "formDataObject-start");
-    //form html portion
+
     const name = document.getElementById("name").value;
     const description = document.getElementById("description").value;
-
-    const formObject = { name: name, description: description };
-    console.log(formObject, "formObject");
 
     try {
       const response = await fetch("http://localhost:3006/tasks", {
@@ -41,41 +26,39 @@ const CreateForm = () => {
       });
 
       if (response.ok) {
-        //getting respone as json
         const result = await response.json();
-        setMessage("Task created succssfully");
+        setMessage("Task created successfully");
         console.log(result, "result");
-        // if (result.error) {
-        //   console.log(`error: ${result.error}`);
-        // }
-
-        // console.log("createdTask:", result.createdTask);
       } else {
         const errorData = await response.json();
-
-        setMessage(errorData.error); // Show Zod validation error
+        setMessage(errorData.error);
       }
     } catch (err) {
       console.log(err);
       setMessage("An error occurred");
     }
-
-    //
   };
-  //
+
   return (
-    <div>
+    <div className="container mt-5">
       <h2>Create Form</h2>
-      {/* error */}
-      {message && <div className="error-message">{message}</div>}
-      {/* <form> */}
+      {message && <div className="alert alert-danger">{message}</div>}
       <form onSubmit={formHandler}>
-        <label>Name</label>
-        <input id="name" type="text" required />
-        <label>Description</label>
-        <textarea id="description" type="text" required />
-        {/*  */}
-        <button type="submit">Submit here</button>
+        <div className="mb-3">
+          <label htmlFor="name" className="form-label">
+            Name
+          </label>
+          <input id="name" type="text" className="form-control" required />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="description" className="form-label">
+            Description
+          </label>
+          <textarea id="description" className="form-control" required />
+        </div>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
       </form>
     </div>
   );
