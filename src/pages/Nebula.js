@@ -115,7 +115,7 @@ const Nebula = () => {
   //
   return (
     <div>
-      <h2>Nebula</h2>
+      <h2>Task Details</h2>
       {/*  */}
       {dataArray &&
         dataArray.map((oneData) => (

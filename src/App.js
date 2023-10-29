@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 //pages and components
-import Home from "./pages/Home";
+// import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import { Nebula } from "./pages/Nebula";
 import { CreateForm } from "./pages/CreateForm";
@@ -18,12 +18,14 @@ function App() {
         <div className="pages">
           <Routes>
             {/* <Route path="/" element={<Home />} /> */}
-
-            {/* <Route path="/nebula" element={<Nebula />} /> */}
+            {/* For root route */}
             <Route
-              path="/nebula"
+              path="/"
               element={user ? <Nebula /> : <Navigate to="/auth" />}
             />
+
+            {/* <Route path="/nebula" element={<Nebula />} /> */}
+
             {/* <Route path="/createForm" element={<CreateForm />} /> */}
             <Route
               path="/createForm"
@@ -32,12 +34,16 @@ function App() {
             {/* <Route path="/auth" element={<Auth />} /> */}
             <Route
               path="/auth"
-              element={!user ? <Auth /> : <Navigate to="/home" />}
+              element={!user ? <Auth /> : <Navigate to="/nebula" />}
             />
             {/*  */}
-            <Route
+            {/* <Route
               path="/home"
               element={user ? <Home /> : <Navigate to="/auth" />}
+            /> */}
+            <Route
+              path="/nebula"
+              element={user ? <Nebula /> : <Navigate to="/auth" />}
             />
           </Routes>
         </div>

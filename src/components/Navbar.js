@@ -14,7 +14,7 @@ const Navbar = () => {
     <header>
       <div className="container">
         {/* How link is different to  <Route path="/" */}
-        <Link to="/home">
+        <Link to="/nebula">
           <h1>Task Buddy</h1>
         </Link>
 
@@ -22,7 +22,7 @@ const Navbar = () => {
           {user && (
             <>
               <Link to="/CreateForm">Create-Task </Link>
-              <Link to="/nebula"> Nebula </Link>
+              {/* <Link to="/nebula"> Nebula </Link> */}
               <button onClick={logoutHandler}>Logout</button>
             </>
           )}
