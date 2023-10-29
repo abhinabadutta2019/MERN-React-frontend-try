@@ -9,6 +9,8 @@ const Auth = () => {
   const { login } = useContext(AuthContext);
   //
   const [isRegisterForm, setIsRegisterForm] = useState(true);
+  //
+  const [error, setError] = useState(""); // State variable for error
 
   //
   const toggleForm = () => {
@@ -75,24 +77,36 @@ const Auth = () => {
         }),
       });
       //
-      const loginResult = await response.json();
-      // if (loginResult.error) {
-      //   console.log(`error: ${loginResult.error}`);
+      // const loginResult = await response.json();
+      // // if (loginResult.error) {
+      // //   console.log(`error: ${loginResult.error}`);
+      // // }
+
+      // console.log(loginResult);
+
+      // if (loginResult.token) {
+      //   console.log(loginResult, "loginResult: from loginHandler()");
+      //   //authContext hook
+      //   login(loginResult);
+      //   //
+      //   // console.log(user);
       // }
-
-      console.log(loginResult);
-
-      if (loginResult.token) {
-        console.log(loginResult, "loginResult: from loginHandler()");
-        //authContext hook
-        login(loginResult);
+      if (response.ok) {
+        const loginResult = await response.json();
         //
-        // console.log(user);
+        console.log(loginResult, "loginResult from login-response.ok");
+        if (loginResult.token) {
+          login(loginResult);
+        }
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message); // Update error state
       }
 
       // console.log("loggedUser:", loginResult);
     } catch (err) {
       console.log(err);
+      setError("An error occurred"); // Update error state for general errors
     }
   };
   //
@@ -106,7 +120,8 @@ const Auth = () => {
       {/*  */}
       <h2>{isRegisterForm ? "Register form" : "Login form"}</h2>
       {/*  */}
-
+      {error && <div className="error-message">{error}</div>}{" "}
+      {/* Display error if error state is not empty */}
       {isRegisterForm ? (
         <form onSubmit={registrationHandler}>
           <label>Username</label>
