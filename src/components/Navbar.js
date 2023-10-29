@@ -1,13 +1,12 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-//
-// import Navbar from 'react-bootstrap/Navbar';
-// import Container from "react-bootstrap/Container";
-// import Nav from "react-bootstrap/Nav";
-//
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import Button from "react-bootstrap/Button";
 
-const Navbar = () => {
+const CustomNavbar = () => {
   const { logout, user } = useContext(AuthContext);
 
   const logoutHandler = () => {
@@ -15,61 +14,41 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <Navbar bg="light" expand="lg">
       <div className="container">
-        <Link to="/nebula" className="navbar-brand">
+        <Navbar.Brand as={Link} to="/nebula">
           Task Buddy
-        </Link>
+        </Navbar.Brand>
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
             {user && (
               <>
-                <li className="nav-item">
-                  <Link to="/CreateForm" className="nav-link">
-                    Create Task
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/nebula" className="nav-link">
-                    Task Details
-                  </Link>
-                </li>
+                <Nav.Link as={Link} to="/CreateForm">
+                  Create Task
+                </Nav.Link>
+                <Nav.Link as={Link} to="/nebula">
+                  Task Details
+                </Nav.Link>
               </>
             )}
-          </ul>
+          </Nav>
 
-          {user && (
-            <button className="btn btn-outline-danger" onClick={logoutHandler}>
+          {user ? (
+            <Button variant="outline-danger" onClick={logoutHandler}>
               Logout
-            </button>
+            </Button>
+          ) : (
+            <Nav.Link as={Link} to="/auth">
+              Auth
+            </Nav.Link>
           )}
-
-          {!user && (
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link to="/auth" className="nav-link">
-                  Auth
-                </Link>
-              </li>
-            </ul>
-          )}
-        </div>
+        </Navbar.Collapse>
       </div>
-    </nav>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default CustomNavbar;
