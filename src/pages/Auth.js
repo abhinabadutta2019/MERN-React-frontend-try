@@ -77,20 +77,6 @@ const Auth = () => {
         }),
       });
       //
-      // const loginResult = await response.json();
-      // // if (loginResult.error) {
-      // //   console.log(`error: ${loginResult.error}`);
-      // // }
-
-      // console.log(loginResult);
-
-      // if (loginResult.token) {
-      //   console.log(loginResult, "loginResult: from loginHandler()");
-      //   //authContext hook
-      //   login(loginResult);
-      //   //
-      //   // console.log(user);
-      // }
       if (response.ok) {
         const loginResult = await response.json();
         //
